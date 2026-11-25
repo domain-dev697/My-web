@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NetLab Portal — Auth & Study Hub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      <div>
+        <h1>MY WEB PROJECT</h1>
+        <span class="brand-sub">Systems, Firmware &amp; Study Workspace</span>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <div id="sessionBadge" class="session-badge">
+        <span class="status-indicator"></span>
+        <span id="sessionStatus">Guest Session</span>
+      </div>
+      <button type="button" id="logoutBtn" class="btn btn-ghost hidden">Sign Out</button>
+    </div>
+  </header>
+
+  <!-- Running Pictures Showcase -->
+  <section class="carousel-section" aria-label="Lab showcase gallery">
+    <div class="carousel-header">
+      <span class="eyebrow">LAB ENVIRONMENT SHOWCASE</span>
+      <span class="carousel-hint">Hover to pause</span>
+    </div>
+
+    <div class="carousel-viewport">
+      <div class="carousel-track">
+        <figure class="slide-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRme1qPfpXt-dxRFIdQqPZSPYCNTLSrNNGHrfV8IEGriS48ZgoECHJA_gQ&s=10" alt="Embedded hardware circuit board" />
+          <figcaption>Embedded Hardware &amp; Microcontrollers</figcaption>
+        </figure>
+        <figure class="slide-item">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&auto=format&fit=crop" alt="Source code on monitor" />
+          <figcaption>Full-Stack &amp; API Architecture</figcaption>
+        </figure>
+        <figure class="slide-item">
+          <img src="https://www.wireshark.org/docs/wsug_html_chunked/images/ws-main.png" alt="Network security terminal" />
+          <figcaption>Network Defense &amp; Diagnostics</figcaption>
+        </figure>
+        <figure class="slide-item">
+          <img src="https://www.kali.org/images/kali-desktop-xfce.jpg" alt="Encrypted data stream" />
+          <figcaption>Ethical Hacking &amp; Cybersecurity</figcaption>
+        </figure>
+
+        <!-- Duplicate items for seamless infinite scroll -->
+        <figure class="slide-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRme1qPfpXt-dxRFIdQqPZSPYCNTLSrNNGHrfV8IEGriS48ZgoECHJA_gQ&s=10" alt="Embedded hardware circuit board" />
+          <figcaption>Embedded Hardware &amp; Microcontrollers</figcaption>
+        </figure>
+        <figure class="slide-item">
+          <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=900&auto=format&fit=crop" alt="Source code on monitor" />
+          <figcaption>Full-Stack &amp; API Architecture</figcaption>
+        </figure>
+        <figure class="slide-item">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRme1qPfpXt-dxRFIdQqPZSPYCNTLSrNNGHrfV8IEGriS48ZgoECHJA_gQ&s=10" alt="Network security terminal" />
+          <figcaption>Network Defense &amp; Diagnostics</figcaption>
+        </figure>
+        <figure class="slide-item">
+          <img src="https://www.kali.org/images/kali-desktop-xfce.jpg" alt="Encrypted data stream" />
+          <figcaption>Ethical Hacking &amp; Cybersecurity</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Authentication Stage with Sliding Rectangle Overlay -->
+  <main id="authStage" class="auth-stage">
+    <div class="auth-shell" id="authShell">
+      <!-- Mobile Mode Tabs -->
+      <div class="mobile-tabs">
+        <button type="button" id="mobileLoginTab" class="tab-btn active">Login</button>
+        <button type="button" id="mobileRegisterTab" class="tab-btn">Register</button>
+      </div>
+
+      <!-- Login Form (Left Side) -->
+      <div class="form-pane login-pane">
+        <form id="loginForm" class="auth-form" novalidate>
+          <span class="form-tag">WELCOME BACK</span>
+          <h2>Sign In to Portal</h2>
+          <p class="form-desc">Access your saved study notes, lesson modules, and firmware links.</p>
+
+          <label class="field">
+            <span>Email Address</span>
+            <input type="email" name="email" autocomplete="email" required placeholder="student@netlab.edu" />
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <input type="password" name="password" autocomplete="current-password" required placeholder="Enter your password" />
+          </label>
+
+          <button type="submit" id="loginSubmitBtn" class="btn btn-primary">Sign In</button>
+        </form>
+      </div>
+
+      <!-- Register Form (Right Side) -->
+      <div class="form-pane register-pane">
+        <form id="registerForm" class="auth-form" novalidate>
+          <span class="form-tag">NEW ACCOUNT</span>
+          <h2>Create Lab Account</h2>
+          <p class="form-desc">Register a student profile to store study resources in your workspace.</p>
+
+          <label class="field">
+            <span>Username</span>
+            <input type="text" name="username" autocomplete="username" required minlength="3" placeholder="domain_dev" />
+          </label>
+
+          <label class="field">
+            <span>Email Address</span>
+            <input type="email" name="email" autocomplete="email" required placeholder="student@netlab.edu" />
+          </label>
+
+          <label class="field">
+            <span>Password</span>
+            <input type="password" name="password" autocomplete="new-password" required minlength="6" placeholder="Minimum 6 characters" />
+          </label>
+
+          <button type="submit" id="registerSubmitBtn" class="btn btn-primary">Create Account</button>
+        </form>
+      </div>
+
+      <!-- Sliding Rectangle Overlay Panel -->
+      <div class="overlay-container" aria-hidden="true">
+        <div class="overlay-panel">
+          <div class="overlay-content overlay-right-view">
+            <span class="overlay-badge">STUDENT WORKSPACE</span>
+            <h3>New to NetLab?</h3>
+            <p>Create an account in seconds to organize class lessons, study notes, and verified firmware repositories.</p>
+            <button type="button" id="slideToRegister" class="btn btn-outline">Slide to Register &rarr;</button>
+          </div>
+
+          <div class="overlay-content overlay-left-view">
+            <span class="overlay-badge">ALREADY REGISTERED</span>
+            <h3>Have an Account?</h3>
+            <p>Sign in with your credentials to load your personal study dashboard and saved download links.</p>
+            <button type="button" id="slideToLogin" class="btn btn-outline">&larr; Slide to Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Status / Error Toast Banner -->
+    <div id="feedbackBanner" class="feedback-banner hidden" role="status" aria-live="polite"></div>
+  </main>
+
+  <!-- Logged-In Dashboard -->
+  <section id="dashboardStage" class="dashboard-stage hidden" aria-label="Student and Firmware Dashboard">
+    <div class="dashboard-container">
+      <!-- Dashboard Hero Header -->
+      <div class="dash-hero">
+        <div>
+          <span class="eyebrow">AUTHENTICATED WORKSPACE</span>
+          <h2 id="dashWelcome">Welcome back</h2>
+          <p id="dashUserMeta" class="dash-meta"></p>
+        </div>
+
+        <div class="dash-stats">
+          <div class="stat-pill">
+            <strong id="noteCount">0</strong>
+            <span>Study Notes</span>
+          </div>
+          <div class="stat-pill">
+            <strong id="linkCount">0</strong>
+            <span>Saved Links</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Two-Column Workspace -->
+      <div class="dash-grid">
+        <!-- Column 1: School Study Notes -->
+        <article class="panel-card">
+          <div class="panel-head">
+            <div>
+              <h3>School Study Notes</h3>
+              <p>Keep course summaries, formulas, and exam topics organized.</p>
+            </div>
+          </div>
+
+          <form id="studyForm" class="stack-form">
+            <div class="form-row">
+              <input type="text" name="subject" placeholder="Subject (e.g., Data Structures, Networking)" required />
+              <input type="text" name="tag" placeholder="Tag (e.g., Midterm, Lab 4)" />
+            </div>
+            <textarea name="notes" rows="3" placeholder="Write key takeaways, commands, or revision reminders..." required></textarea>
+            <button type="submit" class="btn btn-primary">Save Study Note</button>
+          </form>
+
+          <ul id="studyList" class="resource-list"></ul>
+        </article>
+
+        <!-- Column 2: Lessons & Firmware Download Links -->
+        <article class="panel-card">
+          <div class="panel-head">
+            <div>
+              <h3>Lessons &amp; Firmware Repository</h3>
+              <p>Bookmark official firmware releases, docs, and class lesson portals.</p>
+            </div>
+          </div>
+
+          <form id="linkForm" class="stack-form">
+            <div class="form-row">
+              <select name="category" aria-label="Resource Category">
+                <option value="Firmware">Firmware Download</option>
+                <option value="Lesson">Lesson Module</option>
+                <option value="Study Guide">Study Guide</option>
+              </select>
+              <input type="text" name="version" placeholder="Version / Week (e.g., v2.4.1 or Week 6)" />
+            </div>
+            <input type="text" name="title" placeholder="Resource title (e.g., ESP32-S3 Official SDK / Router Firmware)" required />
+            <input type="url" name="url" placeholder="https://official-source.example.com/resource" required />
+            <button type="submit" class="btn btn-primary">Add Resource Link</button>
+          </form>
+
+          <!-- Filter Bar -->
+          <div class="filter-bar" role="group" aria-label="Filter saved links">
+            <button type="button" class="filter-chip active" data-filter="ALL">All</button>
+            <button type="button" class="filter-chip" data-filter="Firmware">Firmware</button>
+            <button type="button" class="filter-chip" data-filter="Lesson">Lessons</button>
+            <button type="button" class="filter-chip" data-filter="Study Guide">Study Guides</button>
+          </div>
+
+          <ul id="linkList" class="resource-list"></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+  
+    <footer class="site-footer">
+    <div class="dev-credit">
+      <span class="dev-dot"></span>
+      <span>Developer : <strong>Dennis@-dev</strong></span>
+    </div>
+  </footer>
+
+
+  <script src="app.js"></script>
+</body>
+</html>
